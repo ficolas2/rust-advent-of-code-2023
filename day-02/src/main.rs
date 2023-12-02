@@ -37,7 +37,7 @@ fn read_games() -> Vec<Game> {
 fn part_1(game_vec: &Vec<Game>, max_cubes: &HashMap<&str, i32>) -> i32 {
     game_vec.iter().fold(0, |sum, game| {
         let valid = game.draws.iter().all(|draw| {
-            draw.iter().all(|(color, &amount)| max_cubes[color as &str] >= amount)
+            draw.iter().all(|(color, &amount)| max_cubes[color.as_str()] >= amount)
         });
 
         if valid {
@@ -56,7 +56,7 @@ fn part_2(game_vec: &Vec<Game>) -> i32{
 
         for draw in &game.draws {
             for (color, count) in draw {
-                if maxes.get(color as &str).unwrap_or(&0) < count {
+                if maxes.get(color.as_str()).unwrap_or(&0) < count {
                     maxes.insert(color, *count);
                 }
             }
